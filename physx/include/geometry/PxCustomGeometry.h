@@ -296,6 +296,9 @@ namespace physx
 
 	public:
 		Callbacks* callbacks;		//!< A reference to the callbacks object.
+
+		// BR: Additional user data for the shape. Can be used by the callbacks.
+		PxU64 userData;
 	};
 
 	PX_INLINE bool PxCustomGeometry::isValid() const
