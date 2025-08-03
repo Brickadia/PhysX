@@ -76,6 +76,9 @@ SET(CLANG_WARNINGS "-ferror-limit=0 -Wall -Wextra -Werror -Weverything\
     -Wno-zero-as-null-pointer-constant \
     -Wno-reserved-identifier \
     -Wno-undefined-func-template \
+	-Wno-unused-but-set-variable \
+	-Wno-deprecated-copy-with-user-provided-copy \
+	-Wno-unsafe-buffer-usage \
 ")
 
 SET(GCC_WARNINGS "-Wall -Werror \
@@ -123,7 +126,7 @@ IF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 	IF ("${CMAKE_CXX_COMPILER_VERSION}" VERSION_LESS "10.0.0")
 		SET(PHYSX_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_CXX_FLAGS} -fstrict-aliasing -Wstrict-aliasing=2 -Wno-shadow ${CLANG_WARNINGS}" CACHE INTERNAL "PhysX CXX")
 	ELSE()
-		SET(PHYSX_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_CXX_FLAGS} -fstrict-aliasing -Wstrict-aliasing=2 -ffp-exception-behavior=maytrap ${CLANG_WARNINGS}" CACHE INTERNAL "PhysX CXX")
+		SET(PHYSX_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_CXX_FLAGS} -fstrict-aliasing -Wstrict-aliasing=2 -ffp-exception-behavior=maytrap -mavx -fno-fast-math -fno-unsafe-math-optimizations ${CLANG_WARNINGS}" CACHE INTERNAL "PhysX CXX")
 	ENDIF()
 ELSEIF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	SET(PHYSX_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_CXX_FLAGS} -fno-strict-aliasing ${GCC_WARNINGS}" CACHE INTERNAL "PhysX CXX")
