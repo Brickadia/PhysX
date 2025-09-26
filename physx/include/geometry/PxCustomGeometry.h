@@ -265,7 +265,8 @@ namespace physx
 		*/
 		PX_INLINE PxCustomGeometry(const PxCustomGeometry& that) :
 			PxGeometry(that),
-			callbacks(that.callbacks)
+			callbacks(that.callbacks),
+			userData(that.userData)
 		{}
 
 		/**
@@ -275,6 +276,7 @@ namespace physx
 		{
 			mType = that.mType;
 			callbacks = that.callbacks;
+			userData = that.userData;
 		}
 
 		/**
