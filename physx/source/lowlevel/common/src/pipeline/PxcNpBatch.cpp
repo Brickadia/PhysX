@@ -456,13 +456,13 @@ static PX_FORCE_INLINE void discreteNarrowPhase(PxcNpThreadContext& context, con
 		PX_ASSERT(conMethod);
 
 		// BR: Something wrong with convex manifold reuse. Disabling for now.
-		if (cache.isManifold())
-		{
-			cache.getManifold().clearManifold();
-		}
-		else if (cache.isMultiManifold())
+		if (cache.isMultiManifold())
 		{
 			cache.getMultipleManifold().clearManifold();
+		}
+		else if (cache.isManifold())
+		{
+			cache.getManifold().clearManifold();
 		}
 
 		conMethod(contactShape0, contactShape1, *tm0, *tm1, context.mNarrowPhaseParams, cache, context.mContactBuffer, &context.mRenderOutput);
