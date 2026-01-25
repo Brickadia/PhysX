@@ -8,7 +8,7 @@ if not exist "C:\Program Files (x86)\Microsoft Visual Studio\Installer" (
 
 :: Locate MSBuild
 pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer"
-for /f "usebackq tokens=* delims=" %%i in (`vswhere.exe -version "[17.0,18.0)" -products * -requires Microsoft.Component.MSBuild -property installationPath -nologo`) do (
+for /f "usebackq tokens=* delims=" %%i in (`vswhere.exe -version "[18.0,19.0)" -products * -requires Microsoft.Component.MSBuild -property installationPath -nologo`) do (
 	set VisualStudioLocation=%%i
 )
 popd
@@ -22,8 +22,8 @@ if not exist "%VisualStudioLocation%" (
 set PM_PACKAGES_ROOT=%~dp0packages
 
 set LLVMInstallDir=C:/Program Files/LLVM
-set LLVMToolsVersion=20.1.8
-set LLVMIncludeVersion=20
+set LLVMToolsVersion=21.1.8
+set LLVMIncludeVersion=21
 
 :: Generate windows project (static)
 call "generate_projects.bat" clangwin64-brickadia
@@ -34,7 +34,7 @@ if not %ERRORLEVEL% == 0 (
 )
 
 :: Generate windows project (dynamic)
-call "generate_projects.bat" vc17win64-brickadia-dynamic
+call "generate_projects.bat" vc18win64-brickadia-dynamic
 
 if not %ERRORLEVEL% == 0 (
 	echo Aborting script due to error.

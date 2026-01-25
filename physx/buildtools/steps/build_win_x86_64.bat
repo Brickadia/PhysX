@@ -20,6 +20,8 @@ if "%VS_PREFIX%" == "vc15" (
     set "VS_VERSION=[16.0,17.0)"
 ) else if "%VS_PREFIX%" == "vc17" (
     set "VS_VERSION=[17.0,18.0)"
+) else if "%VS_PREFIX%" == "vc18" (
+    set "VS_VERSION=[18.0,19.0)"
 ) else (
     echo Unsupported Visual Studio version in preset: %PRESET%
     exit /B 1

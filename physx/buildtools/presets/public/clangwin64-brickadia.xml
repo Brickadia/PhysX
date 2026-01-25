@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<preset name="clangwin64-brickadia" comment="VC17 Win64 PhysX general settings (cpu only)">
+<preset name="clangwin64-brickadia" comment="Clang Win64 PhysX general settings (cpu only)">
   <platform targetPlatform="win64" compiler="clang" />
   <CMakeSwitches>
     <cmakeSwitch name="PX_BUILDSNIPPETS" value="False" comment="Generate the snippets" />

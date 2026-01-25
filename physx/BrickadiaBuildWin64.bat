@@ -8,7 +8,7 @@ if not exist "C:\Program Files (x86)\Microsoft Visual Studio\Installer" (
 
 :: Locate MSBuild
 pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer"
-for /f "usebackq tokens=* delims=" %%i in (`vswhere.exe -version "[17.0,18.0)" -products * -requires Microsoft.Component.MSBuild -property installationPath -nologo`) do (
+for /f "usebackq tokens=* delims=" %%i in (`vswhere.exe -version "[18.0,19.0)" -products * -requires Microsoft.Component.MSBuild -property installationPath -nologo`) do (
 	set VisualStudioLocation=%%i
 )
 popd
@@ -28,8 +28,8 @@ if not %ERRORLEVEL% == 0 (
 set PM_PACKAGES_ROOT=%~dp0packages
 
 set LLVMInstallDir=C:/Program Files/LLVM
-set LLVMToolsVersion=20.1.8
-set LLVMIncludeVersion=20
+set LLVMToolsVersion=21.1.8
+set LLVMIncludeVersion=21
 
 set BuildDebug=0
 set BuildChecked=0
@@ -51,7 +51,7 @@ if "%1"=="release" set BuildRelease=1
 :: Compile targets
 if "%BuildDebug%"=="1" (
 	echo Building debug...
-	msbuild "%~dp0compiler\vc17win64-brickadia-dynamic\PhysXSDK.sln" /m /property:Configuration=debug
+	msbuild "%~dp0compiler\vc18win64-brickadia-dynamic\PhysXSDK.slnx" /m /property:Configuration=debug
 	if not %ERRORLEVEL% == 0 (
 		echo Aborting script due to error.
 		exit /b 1
@@ -60,7 +60,7 @@ if "%BuildDebug%"=="1" (
 
 if "%BuildChecked%"=="1" (
 	echo Building checked...
-	msbuild "%~dp0compiler\vc17win64-brickadia-dynamic\PhysXSDK.sln" /m /property:Configuration=checked
+	msbuild "%~dp0compiler\vc18win64-brickadia-dynamic\PhysXSDK.slnx" /m /property:Configuration=checked
 	if not %ERRORLEVEL% == 0 (
 		echo Aborting script due to error.
 		exit /b 1
@@ -69,7 +69,7 @@ if "%BuildChecked%"=="1" (
 
 if "%BuildProfile%"=="1" (
 	echo Building profile...
-	msbuild "%~dp0compiler\vc17win64-brickadia-dynamic\PhysXSDK.sln" /m /property:Configuration=profile
+	msbuild "%~dp0compiler\vc18win64-brickadia-dynamic\PhysXSDK.slnx" /m /property:Configuration=profile
 	if not %ERRORLEVEL% == 0 (
 		echo Aborting script due to error.
 		exit /b 1
